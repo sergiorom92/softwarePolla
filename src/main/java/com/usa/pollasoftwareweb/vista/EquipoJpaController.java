@@ -50,7 +50,6 @@ public class EquipoJpaController implements Serializable {
         }
         EntityManager em = null;
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             List<Partido> attachedPartidoList = new ArrayList<Partido>();
             for (Partido partidoListPartidoToAttach : equipo.getPartidoList()) {
@@ -83,10 +82,8 @@ public class EquipoJpaController implements Serializable {
                     oldIdEquipoVisitanteOfPartidoList1Partido = em.merge(oldIdEquipoVisitanteOfPartidoList1Partido);
                 }
             }
-            em.getTransaction().commit();
         } catch (Exception ex) {
             try {
-                em.getTransaction().rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }
@@ -101,7 +98,6 @@ public class EquipoJpaController implements Serializable {
     public void edit(Equipo equipo) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             Equipo persistentEquipo = em.find(Equipo.class, equipo.getIdEquipo());
             List<Partido> partidoListOld = persistentEquipo.getPartidoList();
@@ -165,10 +161,8 @@ public class EquipoJpaController implements Serializable {
                     }
                 }
             }
-            em.getTransaction().commit();
         } catch (Exception ex) {
             try {
-                em.getTransaction().rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }
@@ -190,7 +184,6 @@ public class EquipoJpaController implements Serializable {
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             Equipo equipo;
             try {
@@ -218,10 +211,8 @@ public class EquipoJpaController implements Serializable {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(equipo);
-            em.getTransaction().commit();
         } catch (Exception ex) {
             try {
-                em.getTransaction().rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }

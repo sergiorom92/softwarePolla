@@ -42,13 +42,12 @@ public class JugadorJpaController implements Serializable {
         return em;
     }
 
+    @javax.transaction.Transactional
     public void create(Jugador jugador) throws PreexistingEntityException, RollbackFailureException, Exception {
         if (jugador.getApuestaList() == null) {
             jugador.setApuestaList(new ArrayList<Apuesta>());
         }
-
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             List<Apuesta> attachedApuestaList = new ArrayList<Apuesta>();
             for (Apuesta apuestaListApuestaToAttach : jugador.getApuestaList()) {
@@ -66,9 +65,9 @@ public class JugadorJpaController implements Serializable {
                     oldJugadorOfApuestaListApuesta = em.merge(oldJugadorOfApuestaListApuesta);
                 }
             }
-            em.getTransaction().commit();
         } catch (Exception ex) {
             try {
+                System.out.println("Emntra ex");
                 em.getTransaction().rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
@@ -79,7 +78,7 @@ public class JugadorJpaController implements Serializable {
             throw ex;
         } finally {
             if (em != null) {
-                
+
             }
         }
     }
@@ -87,7 +86,6 @@ public class JugadorJpaController implements Serializable {
     public void edit(Jugador jugador) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
 
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             Jugador persistentJugador = em.find(Jugador.class, jugador.getIdJugador());
             List<Apuesta> apuestaListOld = persistentJugador.getApuestaList();
@@ -140,7 +138,7 @@ public class JugadorJpaController implements Serializable {
             throw ex;
         } finally {
             if (em != null) {
-                
+
             }
         }
     }
@@ -148,7 +146,6 @@ public class JugadorJpaController implements Serializable {
     public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
 
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             Jugador jugador;
             try {
@@ -179,7 +176,7 @@ public class JugadorJpaController implements Serializable {
             throw ex;
         } finally {
             if (em != null) {
-                
+
             }
         }
     }
@@ -204,7 +201,7 @@ public class JugadorJpaController implements Serializable {
             }
             return q.getResultList();
         } finally {
-            
+
         }
     }
 
@@ -213,7 +210,7 @@ public class JugadorJpaController implements Serializable {
         try {
             return em.find(Jugador.class, id);
         } finally {
-            
+
         }
     }
 
@@ -226,7 +223,7 @@ public class JugadorJpaController implements Serializable {
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
         } finally {
-            
+
         }
     }
 

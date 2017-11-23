@@ -22,7 +22,7 @@
                     <a class="navbar-brand" href="#">Inicio</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="faces/partidos.xhtml">Partidos</a> </li>
+                    <li class=""><a href="faces/partidos.xhtml">Partidos</a> </li>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="faces/posicionesJugador.xhtml">Tabla posiciones</a> </li>
@@ -30,34 +30,19 @@
             </div>
         </nav>
         <div class="container">
-            <h3>Todos los partidos</h3>         
+            <h3>Tabla de posiciones</h3>         
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Local</th>
-                        <th>Visitante</th>
-                        <th>Marcador</th>
-                        <th>Apuesta</th>
-                        <th>Fecha Partido</th>
-                        <th>Acciones</th>
+                        <th>Jugador</th>
+                        <th>Puntuación</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <ui:repeat value="#{partidoWeb.partidos}" var="item">
+                    <ui:repeat value="#{apuestaWeb.jugadoresApuesta.entrySet().toArray()}" var="item">
                         <tr>
-                            <td>#{item.idEquipoLocal.nombre}</td>
-                            <td>#{item.idEquipoVisitante.nombre}</td>
-                            <td>#{item.marcadorLocalFinal} - #{item.marcadorVisitanteFinal}</td>
-                            <td>#{item.marcadorLocalFinal} - #{item.marcadorVisitanteFinal}</td>
-                            <td>#{item.hora}</td>
-                            <td>  
-                                <div class="btn-group">
-                                    <h:form>
-                                        <h:commandButton class="btn btn-primary" value="Apostar - modificar" type="submit" action="#{login.logout}" />
-                                        <h:commandButton class="btn btn-danger" value="Borrar Apuesta" type="submit" action="#{login.logout}" />
-                                    </h:form>
-                                </div>
-                            </td>
+                            <td>#{item.key.alias}</td>
+                            <td>#{item.value}</td>
                         </tr>
                     </ui:repeat>
                 </tbody>

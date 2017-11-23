@@ -48,7 +48,6 @@ public class PartidoJpaController implements Serializable {
         }
         EntityManager em = null;
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             Equipo idEquipoLocal = partido.getIdEquipoLocal();
             if (idEquipoLocal != null) {
@@ -84,10 +83,8 @@ public class PartidoJpaController implements Serializable {
                     oldPartidoOfApuestaListApuesta = em.merge(oldPartidoOfApuestaListApuesta);
                 }
             }
-            em.getTransaction().commit();
         } catch (Exception ex) {
             try {
-                em.getTransaction().rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }
@@ -102,7 +99,6 @@ public class PartidoJpaController implements Serializable {
     public void edit(Partido partido) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             Partido persistentPartido = em.find(Partido.class, partido.getIdPartido());
             Equipo idEquipoLocalOld = persistentPartido.getIdEquipoLocal();
@@ -166,10 +162,8 @@ public class PartidoJpaController implements Serializable {
                     }
                 }
             }
-            em.getTransaction().commit();
         } catch (Exception ex) {
             try {
-                em.getTransaction().rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }
@@ -191,7 +185,6 @@ public class PartidoJpaController implements Serializable {
     public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
-            em.getTransaction().begin();
             em = getEntityManager();
             Partido partido;
             try {
@@ -222,10 +215,8 @@ public class PartidoJpaController implements Serializable {
                 idEquipoVisitante = em.merge(idEquipoVisitante);
             }
             em.remove(partido);
-            em.getTransaction().commit();
         } catch (Exception ex) {
             try {
-                em.getTransaction().rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }

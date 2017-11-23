@@ -14,12 +14,19 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="libraries/jquery.datetimepicker.min.css"/>
 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="libraries/jquery.datetimepicker.full.min.js"></script>
+        <script>
+            jQuery(document).ready(function () {
+                jQuery('.datetimepicker').datetimepicker();
+            });
+        </script>
     </h:head>
     <style>
         body{ background-color: #FFFFFF;
@@ -40,48 +47,36 @@ and open the template in the editor.
             </div>
         </nav>
 
-        <h1 class="text-primary text-center">Apuesta Mundialista</h1>
-
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-10">
-                <p> 
-                    Bienvenido al sistema de administración de la polla!! Por favor ingrese su usuario y contraseña.
-                </p>
-            </div>
-
-            <div class="col-sm-1"></div>
-
-        </div>
+        <h1 class="text-primary text-center">Crear Partido</h1>
 
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <h:form>
-                    <label for="email">Identificación:</label>
-
-                    <div class="input-group form-group">
+                    <label for="email">Equipo Local</label>
+                    <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <h:inputText class="form-control" id="username" value="#{login.user}"></h:inputText>
-                        <h:message for="username"></h:message>
+                        <h:selectOneMenu class="form-control" value="#{crearPartidoWeb.equipoLocal}">
+                            <f:selectItems value="#{crearPartidoWeb.equipos}" var="equipo" itemValue="#{equipo.idEquipo}" itemLabel="#{equipo.nombre}" ></f:selectItems>
+                        </h:selectOneMenu>
                     </div>
-                    <label for="email">Contraseña:</label>
+                    <label for="email">Equipo Visitante</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <h:selectOneMenu  class="form-control" value="#{crearPartidoWeb.equipoVisitante}">
+                            <f:selectItems value="#{crearPartidoWeb.equipos}" var="equipo" itemValue="#{equipo.idEquipo}" itemLabel="#{equipo.nombre}" ></f:selectItems>
+                        </h:selectOneMenu>
+                    </div>
+                    <label for="email">Fecha</label>
                     <div class="input-group form-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <h:inputSecret  class="form-control" id="password" value="#{login.password}"></h:inputSecret>
-                        <h:message for="password"></h:message>
+                        <h:inputText id = "fecha" class="form-control datetimepicker" value="#{crearPartidoWeb.fecha}"></h:inputText>
                     </div>
-
-                    <h:commandButton class="btn btn-primary btn-block" action="#{login.validateUsernamePassword()}"
-                                     value="Login"></h:commandButton>
+                    <h:commandButton class="btn btn-primary btn-block" action="#{crearPartidoWeb.crearPartido()}"
+                                     value="Registrar Jugador"></h:commandButton>
                 </h:form>
             </div>
-
             <div class="col-sm-4"></div>
-            
-        </div>
-        <div class="row">
-            <a href="crearJugador.xhtml">Quiero registrarme</a>
         </div>
     </h:body>
 </html>

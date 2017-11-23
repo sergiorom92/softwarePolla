@@ -58,30 +58,27 @@ and open the template in the editor.
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <h:form>
-                    <label for="email">Identificación:</label>
-
-                    <div class="input-group form-group">
+                    <label for="email">Apodo:</label>
+                    <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <h:inputText class="form-control" id="username" value="#{login.user}"></h:inputText>
-                        <h:message for="username"></h:message>
+                        <h:inputText class="form-control" id="apodo" value="#{crearJugadorWeb.alias}"></h:inputText>
+                    </div>
+                    <label for="email">Correo:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <h:inputText class="form-control" id="correo" value="#{crearJugadorWeb.correo}"></h:inputText>
                     </div>
                     <label for="email">Contraseña:</label>
                     <div class="input-group form-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <h:inputSecret  class="form-control" id="password" value="#{login.password}"></h:inputSecret>
+                        <h:inputSecret  class="form-control" id="password" value="#{crearJugadorWeb.password}"></h:inputSecret>
                         <h:message for="password"></h:message>
                     </div>
-
-                    <h:commandButton class="btn btn-primary btn-block" action="#{login.validateUsernamePassword()}"
-                                     value="Login"></h:commandButton>
+                    <h:commandButton class="btn btn-primary btn-block" action="#{crearJugadorWeb.crearJugador()}"
+                                     value="Registrar Jugador"></h:commandButton>
                 </h:form>
             </div>
-
             <div class="col-sm-4"></div>
-            
-        </div>
-        <div class="row">
-            <a href="crearJugador.xhtml">Quiero registrarme</a>
         </div>
     </h:body>
 </html>

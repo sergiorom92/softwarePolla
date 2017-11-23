@@ -128,7 +128,7 @@ public class Partido implements Serializable {
     public void setApuestaList(List<Apuesta> apuestaList) {
         this.apuestaList = apuestaList;
     }
-    
+
     public Equipo getIdEquipoLocal() {
         return idEquipoLocal;
     }

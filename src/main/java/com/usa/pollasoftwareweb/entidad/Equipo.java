@@ -69,6 +69,10 @@ public class Equipo implements Serializable {
         this.nombre = nombre;
     }
 
+    public Equipo(String nombre) {
+        this.nombre = nombre;
+    }
+
     public Integer getIdEquipo() {
         return idEquipo;
     }
