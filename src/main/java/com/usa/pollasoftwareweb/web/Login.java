@@ -9,7 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import com.usa.pollasoftwareweb.vista.JugadorJpaController;
+import com.usa.pollasoftwareweb.controlador.JugadorJpaController;
 
 import com.usa.pollasoftwareweb.entidad.Jugador;
 import com.usa.pollasoftwareweb.seguridad.SessionUtils;

@@ -5,7 +5,7 @@
  */
 package com.usa.pollasoftwareweb.web;
 
-import com.usa.pollasoftwareweb.vista.EquipoJpaController;
+import com.usa.pollasoftwareweb.controlador.EquipoJpaController;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import com.usa.pollasoftwareweb.vista.PartidoJpaController;
+import com.usa.pollasoftwareweb.controlador.PartidoJpaController;
 import com.usa.pollasoftwareweb.entidad.Equipo;
 import com.usa.pollasoftwareweb.entidad.Partido;
 

@@ -5,8 +5,7 @@
  */
 package com.usa.pollasoftwareweb.web;
 
-import com.usa.pollasoftwareweb.vista.ApuestaJpaController;
-import com.usa.pollasoftwareweb.vista.JugadorJpaController;
+import com.usa.pollasoftwareweb.controlador.ApuestaJpaController;
 import com.usa.pollasoftwareweb.entidad.Apuesta;
 import java.util.LinkedList;
 import java.util.List;

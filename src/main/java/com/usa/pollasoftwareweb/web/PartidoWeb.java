@@ -13,9 +13,11 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import com.usa.pollasoftwareweb.vista.PartidoJpaController;
+import com.usa.pollasoftwareweb.controlador.PartidoJpaController;
 
 import com.usa.pollasoftwareweb.entidad.Partido;
+import java.util.Map;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -31,6 +33,16 @@ public class PartidoWeb {
 
     private List<Partido> partidos;
 
+    private String partidoActual;
+
+    public String getPartidoActual() {
+        return partidoActual;
+    }
+
+    public void setPartidoActual(String partidoActual) {
+        this.partidoActual = partidoActual;
+    }
+
     public void cargar() {
         partidos = partidosController.findPartidoEntities();
     }
@@ -43,10 +55,26 @@ public class PartidoWeb {
         this.partidos = partidos;
     }
 
+    private String getPartidoFromJSF(FacesContext context) {
+        Map<String, String> parameters = context.getExternalContext().getRequestParameterMap();
+        return parameters.get("partidoActual");
+    }
+
+    public String outcome() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        this.partidoActual = getPartidoFromJSF(context);
+        return "apostarPartido";
+    }
+
     @PostConstruct
     public void init() {
         partidos = new LinkedList<>();
         cargar();
+    }
+
+    public String execute() {
+        // ...
+        return "/apostarPartido.xhtml?faces-redirect=true";
     }
 
 }

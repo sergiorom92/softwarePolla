@@ -15,8 +15,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import com.usa.pollasoftwareweb.entidad.Partido;
-import com.usa.pollasoftwareweb.vista.EquipoJpaController;
-import com.usa.pollasoftwareweb.vista.PartidoJpaController;
+import com.usa.pollasoftwareweb.controlador.EquipoJpaController;
+import com.usa.pollasoftwareweb.controlador.PartidoJpaController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

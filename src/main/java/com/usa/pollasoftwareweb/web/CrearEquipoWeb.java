@@ -5,7 +5,7 @@
  */
 package com.usa.pollasoftwareweb.web;
 
-import com.usa.pollasoftwareweb.vista.EquipoJpaController;
+import com.usa.pollasoftwareweb.controlador.EquipoJpaController;
 import java.util.LinkedList;
 import java.util.List;
 
