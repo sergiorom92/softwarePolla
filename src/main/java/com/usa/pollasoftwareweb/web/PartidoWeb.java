@@ -35,6 +35,10 @@ public class PartidoWeb {
 
     private String partidoActual;
 
+    private String marcadorActualVisitante;
+
+    private String marcadorActualLocal;
+
     public String getPartidoActual() {
         return partidoActual;
     }
@@ -55,15 +59,49 @@ public class PartidoWeb {
         this.partidos = partidos;
     }
 
+    public String getMarcadorActualVisitante() {
+        return marcadorActualVisitante;
+    }
+
+    public void setMarcadorActualVisitante(String marcadorActualVisitante) {
+        this.marcadorActualVisitante = marcadorActualVisitante;
+    }
+
+    public String getMarcadorActualLocal() {
+        return marcadorActualLocal;
+    }
+
+    public void setMarcadorActualLocal(String marcadorActualLocal) {
+        this.marcadorActualLocal = marcadorActualLocal;
+    }
+
     private String getPartidoFromJSF(FacesContext context) {
         Map<String, String> parameters = context.getExternalContext().getRequestParameterMap();
         return parameters.get("partidoActual");
+    }
+
+    private String getMarcadorLocalFromJSF(FacesContext context) {
+        Map<String, String> parameters = context.getExternalContext().getRequestParameterMap();
+        return parameters.get("marcadorLocal");
+    }
+
+    private String getMarcadorVisitanteFromJSF(FacesContext context) {
+        Map<String, String> parameters = context.getExternalContext().getRequestParameterMap();
+        return parameters.get("marcadorVisitante");
     }
 
     public String outcome() {
         FacesContext context = FacesContext.getCurrentInstance();
         this.partidoActual = getPartidoFromJSF(context);
         return "apostarPartido";
+    }
+
+    public String outcome2() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        this.partidoActual = getPartidoFromJSF(context);
+        this.marcadorActualLocal = getMarcadorLocalFromJSF(context);
+        this.marcadorActualVisitante = getMarcadorVisitanteFromJSF(context);
+        return "modificarPartido";
     }
 
     @PostConstruct

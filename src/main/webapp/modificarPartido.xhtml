@@ -40,25 +40,26 @@ and open the template in the editor.
             </div>
         </nav>
 
-        <h1 class="text-primary text-center">Apostar partido</h1>
+        <h1 class="text-primary text-center">Modificar partido</h1>
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <h:form>
                     <input type="hidden" name="hidden1" value="#{partidoWeb.partidoActual}" />
-                    <input type="hidden" name="hidden2" value="#{login.user}" />
-                    <p>Marcador equipo local</p>
+                    <p>Marcador equipo local actual : #{partidoWeb.marcadorActualLocal}</p>
+                    <p>Marcador equipo local nuevo: </p>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <h:inputText class="form-control" id="marcadorLocal" value="#{apostarPartidoWeb.marcadorLocal}"></h:inputText>
+                        <h:inputText class="form-control" id="marcadorLocal" value="#{modificarPartidoWeb.marcadorLocal}"></h:inputText>
                     </div>
-                    <p>Marcador equipo visitante</p>
+                    <p>Marcador equipo visitante actual : #{partidoWeb.marcadorActualVisitante}</p>
+                    <p>Marcador equipo visitante nuevo:</p>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <h:inputText class="form-control" id="marcadorVisitante" value="#{apostarPartidoWeb.marcadorVisitante}"></h:inputText>
+                        <h:inputText class="form-control" id="marcadorVisitante" value="#{modificarPartidoWeb.marcadorVisitante}"></h:inputText>
                     </div>
-                    <h:commandButton class="btn btn-primary btn-block" action="#{apostarPartidoWeb.agregarMarcador()}"
-                                     value="Registrar Apuesta"></h:commandButton>
+                    <h:commandButton class="btn btn-primary btn-block" action="#{modificarPartidoWeb.modificarPartido()}"
+                                     value="Modificar"></h:commandButton>
                 </h:form>
             </div>
             <div class="col-sm-4"></div>

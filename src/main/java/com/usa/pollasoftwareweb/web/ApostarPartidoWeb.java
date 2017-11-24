@@ -13,11 +13,9 @@ import javax.inject.Named;
 import com.usa.pollasoftwareweb.controlador.PartidoJpaController;
 import com.usa.pollasoftwareweb.entidad.Apuesta;
 import com.usa.pollasoftwareweb.entidad.ApuestaPK;
-import com.usa.pollasoftwareweb.entidad.Partido;
 import com.usa.pollasoftwareweb.exceptions.RollbackFailureException;
 import java.math.BigInteger;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 /**
